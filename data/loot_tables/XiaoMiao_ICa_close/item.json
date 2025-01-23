@@ -1,0 +1,45 @@
+{
+    "pools": [
+        {
+            "rolls": {
+                "min": 1,
+                "max": 1
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "wool",
+                    "weight": 200,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_data",
+                            "data": {
+                                "min": 1,
+                                "max": 16
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "command_block",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "chain_command_block",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "repeating_command_block",
+                    "weight": 10
+                }
+            ]
+        }
+    ]
+}
