@@ -1,3 +1,5 @@
+#使射出的剑无法取拿
+entitydata @e[type=arrow] {pickup:0b}
 #羊毛
 execute @e[type=item,name=item.tile.cloth.white,] ~ ~ ~ summon minecraft:falling_block ~ ~ ~ {Time:1,DropItem:0b,HurtEntities:0b,Block:"minecraft:wool",Data:0s,Tags:["P0","B1"]}
 execute @e[type=item,name=item.tile.cloth.orange] ~ ~ ~ summon minecraft:falling_block ~ ~ ~ {Time:1,DropItem:0b,HurtEntities:0b,Block:"minecraft:wool",Data:1s,Tags:["P1","B1"]}
@@ -116,6 +118,7 @@ execute @e[type=falling_block,score_prostitute=35,score_prostitute_min=35,tag=P1
 execute @e[type=falling_block,score_prostitute=45,score_prostitute_min=45,tag=P16] ~ ~ ~ particle totem ~0 ~1 ~0 0 0 0 0.1 100 force @a
 execute @e[type=falling_block,score_prostitute=45,score_prostitute_min=45,tag=P16] ~ ~ ~ particle endRod ~0 ~1 ~0 0 0 0 0.1 200 force @a
 execute @e[type=falling_block,score_prostitute=45,score_prostitute_min=45,tag=P16] ~ ~ ~ summon minecraft:armor_stand ~ ~-1 ~ {Tags:["prostitute_2"],Invulnerable:1b,NoGravity:1b,Invisible:1,ShowArms:1,Small:1,Rotation:[0f],Pose:{Head:[0f,0f,0f],Body:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightLeg:[0f,0f,0f]}}
+execute @e[type=falling_block,score_prostitute=45,score_prostitute_min=45,tag=P16] ~ ~ ~ particleex conditional endRod ~ ~1 ~ 1 0.6 0.2 1 240 0 0 0 0.5 0.5 0.5 (abs(y)==0.5&!(abs(z)<0.5))|(abs(x)==0.5&(!(abs(z)<0.5)|!(abs(y)<0.5))) 0.1 0 vy=0 1.0 null
 execute @e[type=falling_block,score_prostitute=45,score_prostitute_min=45,tag=P16] ~ ~ ~ kill @s
 scoreboard players add @e[tag=prostitute_2,type=armor_stand] prostitute 1
 execute @e[tag=prostitute_2,type=armor_stand] ~ ~ ~ tp @s ~ ~1 ~
@@ -131,8 +134,23 @@ execute @e[type=bat,score_prostitute=40,score_prostitute_min=40,tag=prostitute_3
 execute @e[type=bat,score_prostitute=41,score_prostitute_min=41,tag=prostitute_3] ~ ~ ~ tp @s ~ ~100 ~
 execute @e[type=bat,score_prostitute=42,score_prostitute_min=42,tag=prostitute_3] ~ ~ ~ kill @s
 execute @e[type=falling_block,score_prostitute=40,score_prostitute_min=40,tag=P17] ~ ~ ~ summon minecraft:fireworks_rocket ~ ~3 ~ {FireworksItem:{id:"minecraft:fireworks",Count:1,tag:{Fireworks:{Explosions:[{Trail:1b,Flicker:1b,Type:3,Colors:[I;9830144],FadeColors:[I;11665152]}]}}}}
-execute @e[type=falling_block,score_prostitute=40,score_prostitute_min=40,tag=P17] ~ ~ ~ function xiaomiao_ica:close/prostitute_3
-execute @e[type=falling_block,score_prostitute=40,score_prostitute_min=40,tag=P17] ~ ~ ~ kill @s
+execute @e[type=falling_block,score_prostitute=40,score_prostitute_min=40,tag=P17] ~ ~ ~ particleex tickparameter endRod ~ ~10 ~ 0 0 1 1 240 0 0 0 -10.0 10.0 y=t;z=sin(t*10);x=cos(t*10)
+execute @e[type=falling_block,score_prostitute=42,score_prostitute_min=42,tag=P17] ~ ~ ~ particleex tickparameter endRod ~ ~10 ~ 0 1 0 1 240 0 0 0 -10.0 10.0 y=t;z=sin(t*10);x=cos(t*10)
+execute @e[type=falling_block,score_prostitute=44,score_prostitute_min=44,tag=P17] ~ ~ ~ particleex tickparameter endRod ~ ~10 ~ 1 0 0 1 240 0 0 0 -10.0 10.0 y=t;z=sin(t*10);x=cos(t*10)
+execute @e[type=falling_block,score_prostitute=44,score_prostitute_min=44,tag=P17] ~ ~ ~ summon minecraft:armor_stand ~ ~-1 ~ {Tags:["prostitute_22"],Invulnerable:1b,NoGravity:1b,Invisible:1,ShowArms:1,Small:1,Rotation:[0f],Pose:{Head:[0f,0f,0f],Body:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightLeg:[0f,0f,0f]}}
+execute @e[type=falling_block,score_prostitute=44,score_prostitute_min=44,tag=P17] ~ ~ ~ particleex conditional endRod ~ ~1 ~ 0.4 1 0.4 1 240 0 0 0 0.5 0.5 0.5 (abs(y)==0.5&!(abs(z)<0.5))|(abs(x)==0.5&(!(abs(z)<0.5)|!(abs(y)<0.5))) 0.1 0 vy=0 1.0 null
+execute @e[type=falling_block,score_prostitute=44,score_prostitute_min=44,tag=P17] ~ ~ ~ kill @s
+
+scoreboard players add @e[tag=prostitute_22,type=armor_stand] prostitute 1
+execute @e[tag=prostitute_22,type=armor_stand] ~ ~ ~ tp @s ~ ~1 ~
+#execute @e[tag=prostitute_22,type=armor_stand] ~ ~ ~ 
+#execute @e[tag=prostitute_22,type=armor_stand] ~ ~ ~ 
+execute @e[type=armor_stand,score_prostitute=25,score_prostitute_min=25,tag=prostitute_22] ~ ~ ~ particleex parameter endRod ~-4 ~ ~1 0 0 1 1 240 0 0 0 0.0 1000.0 x=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*-11;z=(0.06*sin(0.02*t+1)+-0.03*sin(-0.03*t+1))*10;y=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*-10 2 0 vy=0.05
+execute @e[type=armor_stand,score_prostitute=25,score_prostitute_min=25,tag=prostitute_22] ~ ~ ~ particleex parameter endRod ~ ~1 ~3 0 1 0 1 240 0 0 0 0.0 1000.0 x=(0.06*sin(0.02*t+1)+-0.03*sin(-0.03*t+1))*20;z=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*-8;y=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*13 2 0 vy=0.05
+execute @e[type=armor_stand,score_prostitute=25,score_prostitute_min=25,tag=prostitute_22] ~ ~ ~ particleex parameter endRod ~5 ~-1 ~ 1 0 0 1 240 0 0 0 0.0 1000.0 x=(0.06*sin(0.02*t+1)+-0.03*sin(-0.03*t+1))*20;z=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*20;y=(0.06*cos(0.02*t+1)+-0.03*cos(-0.03*t+1))*20 2 0 vy=0.05
+execute @e[type=armor_stand,score_prostitute=25,score_prostitute_min=25,tag=prostitute_22] ~ ~ ~ particleex polarparameter endRod ~ ~3 ~ 1 1 1 1 240 0 0 0 -100.0 100.0 s1,s2,dis=t*10,t*PI/200,5.5 0.5 0 cr=sin(t/7)/2+0.5;cg=sin(t/5)/2+0.5;cb=sin(t/3)/2+0.5 1.0 null
+execute @e[type=armor_stand,score_prostitute=25,score_prostitute_min=25,tag=prostitute_22] ~ ~ ~ kill @s
+
 #循环命令方块
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ summon minecraft:tnt ~ ~ ~ {Invulnerable:1b,Silent:1b,Fuse:5}
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ summon minecraft:tnt ~ ~ ~ {Invulnerable:1b,Silent:1b,Fuse:5}
@@ -141,8 +159,19 @@ execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P1
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ setblock ~ ~ ~1 chest 0 replace {LootTable:"XiaoMiao_ICa_close:item2"}
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ setblock ~ ~ ~-1 chest 0 replace {LootTable:"XiaoMiao_ICa_close:item2"}
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ setblock ~ ~1 ~ chest 0 replace {LootTable:"XiaoMiao_ICa_close:item2"}
+execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ particleex conditional endRod ~ ~1 ~ 0.6 0.2 1 1 240 0 0 0 0.5 0.5 0.5 (abs(y)==0.5&!(abs(z)<0.5))|(abs(x)==0.5&(!(abs(z)<0.5)|!(abs(y)<0.5))) 0.1 0 vy=0 1.0 null
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ fill ~1 ~1 ~1 ~-1 ~-1 ~-1 air 0 destroy
 execute @e[type=falling_block,score_prostitute=50,score_prostitute_min=50,tag=P18] ~ ~ ~ kill @s
 
+
+
+
+
+#首次使用 
+execute @e[type=arrow] ~ ~ ~ execute @a[tag=!attainment_prostitute] ~ ~ ~ summon minecraft:falling_block 109 81 29 {Time:1,Block:"minecraft:redstone_block",Data:0s,Motion:[0.0,0.6,-0.8]}
+execute @e[type=arrow] ~ ~ ~ execute @a[tag=!attainment_prostitute] ~ ~ ~ scoreboard players tag @a add OP
+execute @e[type=arrow] ~ ~ ~ execute @a[tag=!attainment_prostitute] ~ ~ ~ gamemode 1 @a
+execute @e[type=arrow] ~ ~ ~ execute @a[tag=!attainment_prostitute] ~ ~ ~ scoreboard players set @a prostitute 1
+execute @e[type=arrow] ~ ~ ~ execute @a[tag=!attainment_prostitute] ~ ~ ~ scoreboard players tag @a add attainment_prostitute
 
 
